@@ -412,35 +412,53 @@
 
 // ------------------ class: 19
 
+// package main
+
+// import "fmt"
+
+// // add হচ্ছে একটি standard / named function
+// // কারণ এই function-এর নাম আছে: add
+// func add(a int, b int) {
+// 	result := a + b
+// 	fmt.Println("Sum:", result)
+// }
+
+// // greet হচ্ছে আরেকটি named function
+// func greet(name string) {
+// 	fmt.Println("Hello,", name)
+// }
+
+// // multiply function value return করছে
+// func multiply(a int, b int) int {
+// 	return a * b
+// }
+
+// func main() {
+// 	// main নিজেও একটি standard / named function
+// 	// কারণ এর নাম আছে: main
+
+// 	add(4, 7)
+
+// 	greet("Rahim")
+
+// 	result := multiply(5, 6)
+// 	fmt.Println("Multiply:", result)
+// }
+
+
+// ------------------ class: 20
+
 package main
 
 import "fmt"
 
-// add হচ্ছে একটি standard / named function
-// কারণ এই function-এর নাম আছে: add
-func add(a int, b int) {
-	result := a + b
-	fmt.Println("Sum:", result)
-}
-
-// greet হচ্ছে আরেকটি named function
-func greet(name string) {
-	fmt.Println("Hello,", name)
-}
-
-// multiply function value return করছে
-func multiply(a int, b int) int {
-	return a * b
+func init() {
+    fmt.Println("I am the first function that executes first")
 }
 
 func main() {
-	// main নিজেও একটি standard / named function
-	// কারণ এর নাম আছে: main
-
-	add(4, 7)
-
-	greet("Rahim")
-
-	result := multiply(5, 6)
-	fmt.Println("Multiply:", result)
+    fmt.Println("Hello init function")
 }
+
+// ------------------ class: 21
+
