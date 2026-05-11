@@ -122,28 +122,93 @@
 // ------------------ class: 11
 
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-func getSum(x int, y int) int {
-	return x + y
-}
+// func getSum(x int, y int) int {
+// 	return x + y
+// }
 
-func sayHello(message string) {
-	fmt.Println(message)
-}
+// func sayHello(message string) {
+// 	fmt.Println(message)
+// }
 
-func main() {
-	a:=10
-	b:=20
+// func main() {
+// 	a:=10
+// 	b:=20
 
-	result := getSum(a, b)
-	fmt.Printf("The sum of %d and %d is %d.\n", a, b, result)
+// 	result := getSum(a, b)
+// 	fmt.Printf("The sum of %d and %d is %d.\n", a, b, result)
 
-	sayHello("Hello, Go!")
-}
+// 	sayHello("Hello, Go!")
+// }
 
+
+// ------------------ class: 13
+
+// package main
+
+// import "fmt"
+
+// func printWelcomeMessage() {
+// 	fmt.Println("Welcome to the Application")
+// }
+
+// func getUserName() string {
+// 	var name string
+
+// 	fmt.Print("Enter your name: ")
+// 	fmt.Scanln(&name)
+
+// 	return name
+// }
+
+// func getTwoNumbers() (int, int) {
+// 	var numberOne int
+// 	var numberTwo int
+
+// 	fmt.Print("Enter first number: ")
+// 	fmt.Scanln(&numberOne)
+
+// 	fmt.Print("Enter second number: ")
+// 	fmt.Scanln(&numberTwo)
+
+// 	return numberOne, numberTwo
+// }
+
+// func add(numberOne int, numberTwo int) int {
+// 	return numberOne + numberTwo
+// }
+
+// func displayResult(name string, sum int) {
+// 	fmt.Println("Hello", name)
+// 	fmt.Println("Summation =", sum)
+// }
+
+// func printGoodbyeMessage() {
+// 	fmt.Println("Thank you for using the application")
+// 	fmt.Println("Goodbye")
+// }
+
+// func main() {
+// 	printWelcomeMessage()
+
+// 	name := getUserName()
+
+// 	numberOne, numberTwo := getTwoNumbers()
+
+// 	sum := add(numberOne, numberTwo)
+
+// 	displayResult(name, sum)
+
+// 	printGoodbyeMessage()
+// }
+
+
+
+
+// ------------------ class: 14
 
 
 
