@@ -324,33 +324,86 @@
 
 
 
+// package main
+
+// import (
+// 	"fmt"
+
+// 	"example.com/first-program/mathlib"
+// )
+
+// var a = 10
+// var b = 20
+
+// func main() {
+// 	fmt.Println("Main package started")
+
+// 	// Same package-এর function
+// 	add(4, 7)
+
+// 	// Different package-এর exported function
+// 	mathlib.Add(5, 6)
+
+// 	// Different package-এর exported variable
+// 	fmt.Println("Money:", mathlib.Money)
+
+// 	// এটা কাজ করবে না, কারণ sum ছোট হাতের
+// 	// mathlib.sum(2, 3)
+
+// 	// এটাও কাজ করবে না, কারণ secretMoney ছোট হাতের
+// 	// fmt.Println(mathlib.secretMoney)
+// 	// go mod init example.com/first-program
+// }
+
+
+
+// ------------------ class: 17
+
+// package main
+
+// import "fmt"
+
+// // Global scope
+// var a int = 10
+// var b int = 20
+
+// func add(x int, y int) {
+// 	// Local scope of add function
+// 	result := x + y
+
+// 	printNumber(result)
+// }
+
+// func main() {
+// 	add(a, b)
+// }
+
+// func printNumber(number int) {
+// 	// Local scope of printNumber function
+// 	fmt.Println(number)
+// }
+
+
+
+
+// ------------------ class: 18
+
 package main
 
-import (
-	"fmt"
+import "fmt"
 
-	"example.com/first-program/mathlib"
-)
-
-var a = 10
-var b = 20
+// Global variable
+var a int = 10
 
 func main() {
-	fmt.Println("Main package started")
+	age := 30
 
-	// Same package-এর function
-	add(4, 7)
+	if age > 18 {
+		// This local variable shadows the global variable `a`
+		var a int = 47
 
-	// Different package-এর exported function
-	mathlib.Add(5, 6)
+		fmt.Println(a) // prints local `a`
+	}
 
-	// Different package-এর exported variable
-	fmt.Println("Money:", mathlib.Money)
-
-	// এটা কাজ করবে না, কারণ sum ছোট হাতের
-	// mathlib.sum(2, 3)
-
-	// এটাও কাজ করবে না, কারণ secretMoney ছোট হাতের
-	// fmt.Println(mathlib.secretMoney)
-	// go mod init example.com/first-program
+	fmt.Println(a) // prints global `a`
 }

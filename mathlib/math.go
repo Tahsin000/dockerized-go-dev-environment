@@ -1,5 +1,7 @@
 package mathlib
 
+// ------------------ class: 15
+
 import "fmt"
 
 // Exported variable
