@@ -210,111 +210,147 @@
 
 // ------------------ class: 14
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-// Global scope
-// a, b, and add() can be accessed from any function in this file/package.
-var a = 20
-var b = 30
+// // Global scope
+// // a, b, and add() can be accessed from any function in this file/package.
+// var a = 20
+// var b = 30
 
-func add(x int, y int) {
-	// Function/local scope
-	// z only exists inside this add() function.
-	z := x + y
+// func add(x int, y int) {
+// 	// Function/local scope
+// 	// z only exists inside this add() function.
+// 	z := x + y
 
-	fmt.Println("sum:", z)
-}
+// 	fmt.Println("sum:", z)
+// }
 
-func main() {
-	// Local scope of main()
-	p := 30
-	q := 40
+// func main() {
+// 	// Local scope of main()
+// 	p := 30
+// 	q := 40
 
-	add(p, q) // 30 + 40 = 70
+// 	add(p, q) // 30 + 40 = 70
 
-	add(a, b) // 20 + 30 = 50
+// 	add(a, b) // 20 + 30 = 50
 
-	add(a, p) // 20 + 30 = 50
+// 	add(a, p) // 20 + 30 = 50
 
-	// This will NOT work:
-	// add(b, z)
-	//
-	// Why?
-	// Because z was created inside add().
-	// So z's scope is only inside add().
-	// main() cannot access z.
-}
+// 	// This will NOT work:
+// 	// add(b, z)
+// 	//
+// 	// Why?
+// 	// Because z was created inside add().
+// 	// So z's scope is only inside add().
+// 	// main() cannot access z.
+// }
 
 
 
 // ------------------ class: 15
 
+// package main
+
+// import "fmt"
+
+// // Package scope / global-like variable
+// // এই variable পুরো package-এর যেকোনো function থেকে access করা যাবে
+// var appName = "Scope Demo"
+// var version = 1
+
+// func main() {
+// 	fmt.Println("App:", appName)
+// 	fmt.Println("Version:", version)
+
+// 	// Function scope / local variable
+// 	// x শুধু main function-এর ভিতরে access করা যাবে
+// 	x := 18
+
+// 	fmt.Println("x from main:", x)
+
+// 	if x >= 18 {
+// 		// if block scope
+// 		// p শুধু এই if block-এর ভিতরে access করা যাবে
+// 		p := 10
+
+// 		fmt.Println("Inside if block")
+// 		fmt.Println("p =", p)
+// 		fmt.Println("x =", x)          // main function-এর variable পাওয়া যাবে
+// 		fmt.Println("appName =", appName) // package scope variable পাওয়া যাবে
+// 	}
+
+// 	// এখানে p পাওয়া যাবে না
+// 	// কারণ p শুধু if block-এর ভিতরে ছিল
+
+// 	// fmt.Println(p) 
+// 	// Error: undefined: p
+
+// 	switch x {
+// 	case 18:
+// 		// switch case/block scope
+// 		message := "You are exactly 18"
+// 		fmt.Println(message)
+
+// 	default:
+// 		otherMessage := "You are not 18"
+// 		fmt.Println(otherMessage)
+// 	}
+
+// 	// এখানে message পাওয়া যাবে না
+// 	// কারণ message switch block-এর ভিতরে declare করা হয়েছে
+
+// 	// fmt.Println(message)
+// 	// Error: undefined: message
+
+// 	printInfo()
+// }
+
+// func printInfo() {
+// 	// এখানে appName পাওয়া যাবে কারণ এটা package scope
+// 	fmt.Println("From printInfo:", appName)
+
+// 	// এখানে x পাওয়া যাবে না
+// 	// কারণ x main function-এর local variable
+
+// 	// fmt.Println(x)
+// 	// Error: undefined: x
+// }
+
+
+
+// ------------------ class: 15
+
+
+
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-// Package scope / global-like variable
-// এই variable পুরো package-এর যেকোনো function থেকে access করা যাবে
-var appName = "Scope Demo"
-var version = 1
+	"example.com/first-program/mathlib"
+)
+
+var a = 10
+var b = 20
 
 func main() {
-	fmt.Println("App:", appName)
-	fmt.Println("Version:", version)
+	fmt.Println("Main package started")
 
-	// Function scope / local variable
-	// x শুধু main function-এর ভিতরে access করা যাবে
-	x := 18
+	// Same package-এর function
+	add(4, 7)
 
-	fmt.Println("x from main:", x)
+	// Different package-এর exported function
+	mathlib.Add(5, 6)
 
-	if x >= 18 {
-		// if block scope
-		// p শুধু এই if block-এর ভিতরে access করা যাবে
-		p := 10
+	// Different package-এর exported variable
+	fmt.Println("Money:", mathlib.Money)
 
-		fmt.Println("Inside if block")
-		fmt.Println("p =", p)
-		fmt.Println("x =", x)          // main function-এর variable পাওয়া যাবে
-		fmt.Println("appName =", appName) // package scope variable পাওয়া যাবে
-	}
+	// এটা কাজ করবে না, কারণ sum ছোট হাতের
+	// mathlib.sum(2, 3)
 
-	// এখানে p পাওয়া যাবে না
-	// কারণ p শুধু if block-এর ভিতরে ছিল
-
-	// fmt.Println(p) 
-	// Error: undefined: p
-
-	switch x {
-	case 18:
-		// switch case/block scope
-		message := "You are exactly 18"
-		fmt.Println(message)
-
-	default:
-		otherMessage := "You are not 18"
-		fmt.Println(otherMessage)
-	}
-
-	// এখানে message পাওয়া যাবে না
-	// কারণ message switch block-এর ভিতরে declare করা হয়েছে
-
-	// fmt.Println(message)
-	// Error: undefined: message
-
-	printInfo()
+	// এটাও কাজ করবে না, কারণ secretMoney ছোট হাতের
+	// fmt.Println(mathlib.secretMoney)
+	// go mod init example.com/first-program
 }
-
-func printInfo() {
-	// এখানে appName পাওয়া যাবে কারণ এটা package scope
-	fmt.Println("From printInfo:", appName)
-
-	// এখানে x পাওয়া যাবে না
-	// কারণ x main function-এর local variable
-
-	// fmt.Println(x)
-	// Error: undefined: x
-}
-
