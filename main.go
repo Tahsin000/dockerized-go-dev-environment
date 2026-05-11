@@ -388,22 +388,59 @@
 
 // ------------------ class: 18
 
+// package main
+
+// import "fmt"
+
+// // Global variable
+// var a int = 10
+
+// func main() {
+// 	age := 30
+
+// 	if age > 18 {
+// 		// This local variable shadows the global variable `a`
+// 		var a int = 47
+
+// 		fmt.Println(a) // prints local `a`
+// 	}
+
+// 	fmt.Println(a) // prints global `a`
+// }
+
+
+
+// ------------------ class: 19
+
 package main
 
 import "fmt"
 
-// Global variable
-var a int = 10
+// add হচ্ছে একটি standard / named function
+// কারণ এই function-এর নাম আছে: add
+func add(a int, b int) {
+	result := a + b
+	fmt.Println("Sum:", result)
+}
+
+// greet হচ্ছে আরেকটি named function
+func greet(name string) {
+	fmt.Println("Hello,", name)
+}
+
+// multiply function value return করছে
+func multiply(a int, b int) int {
+	return a * b
+}
 
 func main() {
-	age := 30
+	// main নিজেও একটি standard / named function
+	// কারণ এর নাম আছে: main
 
-	if age > 18 {
-		// This local variable shadows the global variable `a`
-		var a int = 47
+	add(4, 7)
 
-		fmt.Println(a) // prints local `a`
-	}
+	greet("Rahim")
 
-	fmt.Println(a) // prints global `a`
+	result := multiply(5, 6)
+	fmt.Println("Multiply:", result)
 }
