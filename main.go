@@ -251,4 +251,70 @@ func main() {
 
 // ------------------ class: 15
 
+package main
+
+import "fmt"
+
+// Package scope / global-like variable
+// এই variable পুরো package-এর যেকোনো function থেকে access করা যাবে
+var appName = "Scope Demo"
+var version = 1
+
+func main() {
+	fmt.Println("App:", appName)
+	fmt.Println("Version:", version)
+
+	// Function scope / local variable
+	// x শুধু main function-এর ভিতরে access করা যাবে
+	x := 18
+
+	fmt.Println("x from main:", x)
+
+	if x >= 18 {
+		// if block scope
+		// p শুধু এই if block-এর ভিতরে access করা যাবে
+		p := 10
+
+		fmt.Println("Inside if block")
+		fmt.Println("p =", p)
+		fmt.Println("x =", x)          // main function-এর variable পাওয়া যাবে
+		fmt.Println("appName =", appName) // package scope variable পাওয়া যাবে
+	}
+
+	// এখানে p পাওয়া যাবে না
+	// কারণ p শুধু if block-এর ভিতরে ছিল
+
+	// fmt.Println(p) 
+	// Error: undefined: p
+
+	switch x {
+	case 18:
+		// switch case/block scope
+		message := "You are exactly 18"
+		fmt.Println(message)
+
+	default:
+		otherMessage := "You are not 18"
+		fmt.Println(otherMessage)
+	}
+
+	// এখানে message পাওয়া যাবে না
+	// কারণ message switch block-এর ভিতরে declare করা হয়েছে
+
+	// fmt.Println(message)
+	// Error: undefined: message
+
+	printInfo()
+}
+
+func printInfo() {
+	// এখানে appName পাওয়া যাবে কারণ এটা package scope
+	fmt.Println("From printInfo:", appName)
+
+	// এখানে x পাওয়া যাবে না
+	// কারণ x main function-এর local variable
+
+	// fmt.Println(x)
+	// Error: undefined: x
+}
 
