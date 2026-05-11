@@ -210,7 +210,45 @@
 
 // ------------------ class: 14
 
+package main
+
+import "fmt"
+
+// Global scope
+// a, b, and add() can be accessed from any function in this file/package.
+var a = 20
+var b = 30
+
+func add(x int, y int) {
+	// Function/local scope
+	// z only exists inside this add() function.
+	z := x + y
+
+	fmt.Println("sum:", z)
+}
+
+func main() {
+	// Local scope of main()
+	p := 30
+	q := 40
+
+	add(p, q) // 30 + 40 = 70
+
+	add(a, b) // 20 + 30 = 50
+
+	add(a, p) // 20 + 30 = 50
+
+	// This will NOT work:
+	// add(b, z)
+	//
+	// Why?
+	// Because z was created inside add().
+	// So z's scope is only inside add().
+	// main() cannot access z.
+}
 
 
+
+// ------------------ class: 15
 
 
