@@ -702,46 +702,81 @@
 
 
 
+// package main
 
-package main
+// import "fmt"
 
-import "fmt"
+// const A = 10
 
-const A = 10
+// func main() {
+// 	p := 100
 
-func main() {
-	p := 100
+// 	// outer function
+// 	call := func() func(int, int) int {
 
-	// outer function
-	call := func() func(int, int) int {
+// 		// inner function (function expression / closure)
+// 		add := func(x, y int) int {
+// 			z := x + y
+// 			fmt.Println("Sum:", z)
+// 			return z
+// 		}
 
-		// inner function (function expression / closure)
-		add := func(x, y int) int {
-			z := x + y
-			fmt.Println("Sum:", z)
-			return z
-		}
+// 		// returning inner function
+// 		return add
+// 	}
 
-		// returning inner function
-		return add
-	}
+// 	// getting function from call()
+// 	fn := call()
 
-	// getting function from call()
-	fn := call()
+// 	// executing returned function
+// 	result := fn(5, p) // 5 + 100
 
-	// executing returned function
-	result := fn(5, p) // 5 + 100
+// 	fmt.Println("Result:", result)
 
-	fmt.Println("Result:", result)
-
-	fmt.Println("Constant A:", A)
-}
+// 	fmt.Println("Constant A:", A)
+// }
 
 
 
 
 
 // ------------------ class: 26
+
+
+package main
+
+import "fmt"
+
+// function that returns a function (closure)
+func outer(money int, p int) func() int {
+
+	// this variable will be captured by closure
+	age := 30
+
+	// returning an inner function
+	return func() int {
+		sum := money + age + p
+		return sum
+	}
+}
+
+func main() {
+
+	// calling outer returns a function
+	incrementOne := outer(100, 10)
+
+	// calling the returned function (closure)
+	fmt.Println(incrementOne()) // 140
+
+	// calling again (same closure, same captured memory)
+	fmt.Println(incrementOne()) // 140
+
+	// another closure instance
+	incrementTwo := outer(200, 20)
+	fmt.Println(incrementTwo()) // 250
+}
+
+
 
 
 
