@@ -507,64 +507,145 @@
 
 // ------------------ class: 22
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-// Global Named Function
-func unit() {
-	fmt.Println("I will be called first")
-}
+// // Global Named Function
+// func unit() {
+// 	fmt.Println("I will be called first")
+// }
 
-// Global Function Expression
-var globalAdd = func(a int, b int) {
-	fmt.Println("Global Add:", a+b)
-}
+// // Global Function Expression
+// var globalAdd = func(a int, b int) {
+// 	fmt.Println("Global Add:", a+b)
+// }
 
-// Another Global Function
-func sum() {
-	fmt.Println("Inside sum()")
+// // Another Global Function
+// func sum() {
+// 	fmt.Println("Inside sum()")
 
-	// Calling global function expression
-	globalAdd(2, 4)
-}
+// 	// Calling global function expression
+// 	globalAdd(2, 4)
+// }
 
-func main() {
+// func main() {
 
-	// First function call
-	unit()
+// 	// First function call
+// 	unit()
 
-	// Calling another function
-	sum()
+// 	// Calling another function
+// 	sum()
 
-	// --------------------------------
-	// Local Function Expression
-	// --------------------------------
+// 	// --------------------------------
+// 	// Local Function Expression
+// 	// --------------------------------
 
-	add := func(a int, b int) {
+// 	add := func(a int, b int) {
 
-		c := a + b
+// 		c := a + b
 
-		fmt.Println("Local Add:", c)
+// 		fmt.Println("Local Add:", c)
 
-	}
+// 	}
 
-	// Function Invocation
-	add(4, 5)
+// 	// Function Invocation
+// 	add(4, 5)
 
-	// --------------------------------
-	// Shadowing Example
-	// --------------------------------
+// 	// --------------------------------
+// 	// Shadowing Example
+// 	// --------------------------------
 
-	globalAdd := func(a int, b int) {
-		fmt.Println("Shadowed Add:", a*b)
-	}
+// 	globalAdd := func(a int, b int) {
+// 		fmt.Println("Shadowed Add:", a*b)
+// 	}
 
-	// This will call local shadowed function
-	globalAdd(3, 4)
+// 	// This will call local shadowed function
+// 	globalAdd(3, 4)
 
-}
+// }
 
 
 
 // ------------------ class: 23
+
+package main
+
+import "fmt"
+
+// First-order function
+// শুধু normal data নিয়ে কাজ করে
+func Add(a int, b int) int {
+	return a + b
+}
+
+// Higher-order function
+// কারণ এটা function কে parameter হিসেবে নিচ্ছে
+func ProcessOperation(
+	a int,
+	b int,
+	operation func(int, int) int,
+) int {
+
+	// callback function execute
+	result := operation(a, b)
+
+	return result
+}
+
+// Function return করছে another function
+// এটাও Higher-order function
+func GetMultiplier() func(int, int) int {
+
+	return func(x int, y int) int {
+		return x * y
+	}
+}
+
+func main() {
+
+	// -----------------------------
+	// Parameter vs Argument
+	// -----------------------------
+
+	// এখানে a,b হচ্ছে parameter
+	// নিচে 2,5 হচ্ছে argument
+
+	sum := Add(2, 5)
+
+	fmt.Println("Add Result:", sum)
+
+	// -----------------------------
+	// First-class function
+	// -----------------------------
+
+	// Function কে variable এ assign করা হচ্ছে
+	myFunc := Add
+
+	fmt.Println("First-class Function:", myFunc(10, 20))
+
+	// -----------------------------
+	// Higher-order function
+	// -----------------------------
+
+	// anonymous function pass করছি
+	// এটা callback function
+
+	result := ProcessOperation(
+		4,
+		6,
+		func(x int, y int) int {
+			return x + y
+		},
+	)
+
+	fmt.Println("Higher-order Result:", result)
+
+	// -----------------------------
+	// Function returning function
+	// -----------------------------
+
+	multiply := GetMultiplier()
+
+	fmt.Println("Multiply Result:", multiply(3, 4))
+}
