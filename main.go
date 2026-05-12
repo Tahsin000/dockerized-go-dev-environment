@@ -781,60 +781,137 @@
 // ------------------ class: 27
 
 
+// package main
+
+// import "fmt"
+
+// // 1. Define a struct (custom type)
+// type User struct {
+// 	Name string
+// 	Age  int
+// }
+
+// // 2. Receiver function (method) - value receiver
+// func (u User) PrintInfo() {
+// 	fmt.Println("Name:", u.Name)
+// 	fmt.Println("Age:", u.Age)
+// }
+
+// // 3. Another receiver function
+// func (u User) IsAdult() bool {
+// 	return u.Age >= 18
+// }
+
+// func main() {
+
+// 	// 4. Create first instance (object)
+// 	user1 := User{
+// 		Name: "Habib",
+// 		Age:  30,
+// 	}
+
+// 	// 5. Create second instance
+// 	user2 := User{
+// 		Name: "Rocky",
+// 		Age:  16,
+// 	}
+
+// 	// 6. Access struct fields using dot (.)
+// 	fmt.Println("User 1 Name:", user1.Name)
+// 	fmt.Println("User 1 Age:", user1.Age)
+
+// 	fmt.Println("User 2 Name:", user2.Name)
+// 	fmt.Println("User 2 Age:", user2.Age)
+
+// 	// 7. Call receiver methods
+// 	fmt.Println("\n--- User 1 Info ---")
+// 	user1.PrintInfo()
+// 	fmt.Println("Is Adult?", user1.IsAdult())
+
+// 	fmt.Println("\n--- User 2 Info ---")
+// 	user2.PrintInfo()
+// 	fmt.Println("Is Adult?", user2.IsAdult())
+// }
+
+
+// ------------------ class: 28
+
+
 package main
 
 import "fmt"
 
-// 1. Define a struct (custom type)
+// --------------------
+// Struct (Custom Type)
+// --------------------
 type User struct {
 	Name string
 	Age  int
 }
 
-// 2. Receiver function (method) - value receiver
-func (u User) PrintInfo() {
+// ------------------------------------
+// Normal function (old style approach)
+// ------------------------------------
+func PrintUserDetails(u User) {
 	fmt.Println("Name:", u.Name)
 	fmt.Println("Age:", u.Age)
 }
 
-// 3. Another receiver function
-func (u User) IsAdult() bool {
-	return u.Age >= 18
+// ------------------------------------
+// Receiver function (method approach)
+// ------------------------------------
+// This makes PrintDetails a METHOD of User
+func (u User) PrintDetails() {
+	fmt.Println("Name:", u.Name)
+	fmt.Println("Age:", u.Age)
 }
 
+// ------------------------------------
+// Another receiver example with parameter
+// ------------------------------------
+func (u User) AddValue(x int) {
+	fmt.Println("Name:", u.Name)
+	fmt.Println("Value received:", x)
+}
+
+// --------------------
+// Main function
+// --------------------
 func main() {
 
-	// 4. Create first instance (object)
+	// Creating struct instances
 	user1 := User{
 		Name: "Habib",
 		Age:  30,
 	}
 
-	// 5. Create second instance
 	user2 := User{
-		Name: "Rocky",
+		Name: "Roki",
 		Age:  16,
 	}
 
-	// 6. Access struct fields using dot (.)
-	fmt.Println("User 1 Name:", user1.Name)
-	fmt.Println("User 1 Age:", user1.Age)
+	// ----------------------------
+	// 1. Normal function call
+	// ----------------------------
+	PrintUserDetails(user1)
+	PrintUserDetails(user2)
 
-	fmt.Println("User 2 Name:", user2.Name)
-	fmt.Println("User 2 Age:", user2.Age)
+	fmt.Println("------------")
 
-	// 7. Call receiver methods
-	fmt.Println("\n--- User 1 Info ---")
-	user1.PrintInfo()
-	fmt.Println("Is Adult?", user1.IsAdult())
+	// ----------------------------
+	// 2. Receiver method call
+	// ----------------------------
+	user1.PrintDetails()
+	user2.PrintDetails()
 
-	fmt.Println("\n--- User 2 Info ---")
-	user2.PrintInfo()
-	fmt.Println("Is Adult?", user2.IsAdult())
+	fmt.Println("------------")
+
+	// ----------------------------
+	// 3. Receiver with parameter
+	// ----------------------------
+	user1.AddValue(10)
 }
 
 
 
-
-// ------------------ class: 28
 
