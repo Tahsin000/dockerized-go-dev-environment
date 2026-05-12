@@ -656,45 +656,45 @@
 // ------------------ class: 24
 
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-// 🔵 Global variable (conceptually in DATA SEGMENT)
-var globalValue = 10
+// // 🔵 Global variable (conceptually in DATA SEGMENT)
+// var globalValue = 10
 
-// 🔵 Function (conceptually in CODE SEGMENT)
-func add(x int, y int) int {
-	// 🟡 Stack frame for add() is created here
+// // 🔵 Function (conceptually in CODE SEGMENT)
+// func add(x int, y int) int {
+// 	// 🟡 Stack frame for add() is created here
 
-	sum := x + y // local variable (STACK)
+// 	sum := x + y // local variable (STACK)
 
-	fmt.Println("Inside add(), sum =", sum)
+// 	fmt.Println("Inside add(), sum =", sum)
 
-	// 🟡 Stack frame destroyed when function returns
-	return sum
-}
+// 	// 🟡 Stack frame destroyed when function returns
+// 	return sum
+// }
 
-// 🔵 Another function (also CODE SEGMENT)
-func init() {
-	fmt.Println("init() runs first")
-}
+// // 🔵 Another function (also CODE SEGMENT)
+// func init() {
+// 	fmt.Println("init() runs first")
+// }
 
-func main() {
-	// 🟡 Stack frame for main() starts here
+// func main() {
+// 	// 🟡 Stack frame for main() starts here
 
-	fmt.Println("Global value:", globalValue)
+// 	fmt.Println("Global value:", globalValue)
 
-	// First call → new stack frame for add(5,4)
-	result1 := add(5, 4)
-	fmt.Println("Result1:", result1)
+// 	// First call → new stack frame for add(5,4)
+// 	result1 := add(5, 4)
+// 	fmt.Println("Result1:", result1)
 
-	// Second call → new stack frame for add(10,3)
-	result2 := add(globalValue, 3)
-	fmt.Println("Result2:", result2)
+// 	// Second call → new stack frame for add(10,3)
+// 	result2 := add(globalValue, 3)
+// 	fmt.Println("Result2:", result2)
 
-	// 🟡 main() stack frame ends here
-}
+// 	// 🟡 main() stack frame ends here
+// }
 
 
 
@@ -702,6 +702,46 @@ func main() {
 
 
 
+
+package main
+
+import "fmt"
+
+const A = 10
+
+func main() {
+	p := 100
+
+	// outer function
+	call := func() func(int, int) int {
+
+		// inner function (function expression / closure)
+		add := func(x, y int) int {
+			z := x + y
+			fmt.Println("Sum:", z)
+			return z
+		}
+
+		// returning inner function
+		return add
+	}
+
+	// getting function from call()
+	fn := call()
+
+	// executing returned function
+	result := fn(5, p) // 5 + 100
+
+	fmt.Println("Result:", result)
+
+	fmt.Println("Constant A:", A)
+}
+
+
+
+
+
+// ------------------ class: 26
 
 
 
