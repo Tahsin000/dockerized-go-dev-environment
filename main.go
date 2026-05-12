@@ -462,18 +462,71 @@
 
 // ------------------ class: 21
 
+// package main
+
+// import "fmt"
+
+// // Named Function
+// func unit() {
+// 	fmt.Println("I will be called first")
+// }
+
+// // Named Function
+// func add(a int, b int) {
+// 	fmt.Println("Sum:", a+b)
+// }
+
+// func main() {
+
+// 	// First function call
+// 	unit()
+
+// 	// Named function invocation
+// 	add(5, 7)
+
+// 	// -----------------------------
+// 	// Anonymous Function
+// 	// -----------------------------
+
+// 	func(a int, b int) {
+
+// 		c := a + b
+// 		fmt.Println("Anonymous Function Sum:", c)
+
+// 	}(4, 7)
+
+// 	// -----------------------------
+// 	// Another IIFE Example
+// 	// -----------------------------
+
+// 	func() {
+// 		fmt.Println("This is an IIFE function")
+// 	}()
+
+// }
+
+// ------------------ class: 22
+
 package main
 
 import "fmt"
 
-// Named Function
+// Global Named Function
 func unit() {
 	fmt.Println("I will be called first")
 }
 
-// Named Function
-func add(a int, b int) {
-	fmt.Println("Sum:", a+b)
+// Global Function Expression
+var globalAdd = func(a int, b int) {
+	fmt.Println("Global Add:", a+b)
+}
+
+// Another Global Function
+func sum() {
+	fmt.Println("Inside sum()")
+
+	// Calling global function expression
+	globalAdd(2, 4)
 }
 
 func main() {
@@ -481,29 +534,37 @@ func main() {
 	// First function call
 	unit()
 
-	// Named function invocation
-	add(5, 7)
+	// Calling another function
+	sum()
 
-	// -----------------------------
-	// Anonymous Function
-	// -----------------------------
+	// --------------------------------
+	// Local Function Expression
+	// --------------------------------
 
-	func(a int, b int) {
+	add := func(a int, b int) {
 
 		c := a + b
-		fmt.Println("Anonymous Function Sum:", c)
 
-	}(4, 7)
+		fmt.Println("Local Add:", c)
 
-	// -----------------------------
-	// Another IIFE Example
-	// -----------------------------
+	}
 
-	func() {
-		fmt.Println("This is an IIFE function")
-	}()
+	// Function Invocation
+	add(4, 5)
+
+	// --------------------------------
+	// Shadowing Example
+	// --------------------------------
+
+	globalAdd := func(a int, b int) {
+		fmt.Println("Shadowed Add:", a*b)
+	}
+
+	// This will call local shadowed function
+	globalAdd(3, 4)
 
 }
 
-// ------------------ class: 22
 
+
+// ------------------ class: 23
