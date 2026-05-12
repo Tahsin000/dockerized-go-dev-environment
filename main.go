@@ -448,17 +448,62 @@
 
 // ------------------ class: 20
 
+// package main
+
+// import "fmt"
+
+// func init() {
+//     fmt.Println("I am the first function that executes first")
+// }
+
+// func main() {
+//     fmt.Println("Hello init function")
+// }
+
+// ------------------ class: 21
+
 package main
 
 import "fmt"
 
-func init() {
-    fmt.Println("I am the first function that executes first")
+// Named Function
+func unit() {
+	fmt.Println("I will be called first")
+}
+
+// Named Function
+func add(a int, b int) {
+	fmt.Println("Sum:", a+b)
 }
 
 func main() {
-    fmt.Println("Hello init function")
+
+	// First function call
+	unit()
+
+	// Named function invocation
+	add(5, 7)
+
+	// -----------------------------
+	// Anonymous Function
+	// -----------------------------
+
+	func(a int, b int) {
+
+		c := a + b
+		fmt.Println("Anonymous Function Sum:", c)
+
+	}(4, 7)
+
+	// -----------------------------
+	// Another IIFE Example
+	// -----------------------------
+
+	func() {
+		fmt.Println("This is an IIFE function")
+	}()
+
 }
 
-// ------------------ class: 21
+// ------------------ class: 22
 
