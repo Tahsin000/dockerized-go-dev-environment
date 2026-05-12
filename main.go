@@ -569,83 +569,139 @@
 
 // ------------------ class: 23
 
+// package main
+
+// import "fmt"
+
+// // First-order function
+// // শুধু normal data নিয়ে কাজ করে
+// func Add(a int, b int) int {
+// 	return a + b
+// }
+
+// // Higher-order function
+// // কারণ এটা function কে parameter হিসেবে নিচ্ছে
+// func ProcessOperation(
+// 	a int,
+// 	b int,
+// 	operation func(int, int) int,
+// ) int {
+
+// 	// callback function execute
+// 	result := operation(a, b)
+
+// 	return result
+// }
+
+// // Function return করছে another function
+// // এটাও Higher-order function
+// func GetMultiplier() func(int, int) int {
+
+// 	return func(x int, y int) int {
+// 		return x * y
+// 	}
+// }
+
+// func main() {
+
+// 	// -----------------------------
+// 	// Parameter vs Argument
+// 	// -----------------------------
+
+// 	// এখানে a,b হচ্ছে parameter
+// 	// নিচে 2,5 হচ্ছে argument
+
+// 	sum := Add(2, 5)
+
+// 	fmt.Println("Add Result:", sum)
+
+// 	// -----------------------------
+// 	// First-class function
+// 	// -----------------------------
+
+// 	// Function কে variable এ assign করা হচ্ছে
+// 	myFunc := Add
+
+// 	fmt.Println("First-class Function:", myFunc(10, 20))
+
+// 	// -----------------------------
+// 	// Higher-order function
+// 	// -----------------------------
+
+// 	// anonymous function pass করছি
+// 	// এটা callback function
+
+// 	result := ProcessOperation(
+// 		4,
+// 		6,
+// 		func(x int, y int) int {
+// 			return x + y
+// 		},
+// 	)
+
+// 	fmt.Println("Higher-order Result:", result)
+
+// 	// -----------------------------
+// 	// Function returning function
+// 	// -----------------------------
+
+// 	multiply := GetMultiplier()
+
+// 	fmt.Println("Multiply Result:", multiply(3, 4))
+// }
+
+
+
+
+// ------------------ class: 24
+
+
 package main
 
 import "fmt"
 
-// First-order function
-// শুধু normal data নিয়ে কাজ করে
-func Add(a int, b int) int {
-	return a + b
+// 🔵 Global variable (conceptually in DATA SEGMENT)
+var globalValue = 10
+
+// 🔵 Function (conceptually in CODE SEGMENT)
+func add(x int, y int) int {
+	// 🟡 Stack frame for add() is created here
+
+	sum := x + y // local variable (STACK)
+
+	fmt.Println("Inside add(), sum =", sum)
+
+	// 🟡 Stack frame destroyed when function returns
+	return sum
 }
 
-// Higher-order function
-// কারণ এটা function কে parameter হিসেবে নিচ্ছে
-func ProcessOperation(
-	a int,
-	b int,
-	operation func(int, int) int,
-) int {
-
-	// callback function execute
-	result := operation(a, b)
-
-	return result
-}
-
-// Function return করছে another function
-// এটাও Higher-order function
-func GetMultiplier() func(int, int) int {
-
-	return func(x int, y int) int {
-		return x * y
-	}
+// 🔵 Another function (also CODE SEGMENT)
+func init() {
+	fmt.Println("init() runs first")
 }
 
 func main() {
+	// 🟡 Stack frame for main() starts here
 
-	// -----------------------------
-	// Parameter vs Argument
-	// -----------------------------
+	fmt.Println("Global value:", globalValue)
 
-	// এখানে a,b হচ্ছে parameter
-	// নিচে 2,5 হচ্ছে argument
+	// First call → new stack frame for add(5,4)
+	result1 := add(5, 4)
+	fmt.Println("Result1:", result1)
 
-	sum := Add(2, 5)
+	// Second call → new stack frame for add(10,3)
+	result2 := add(globalValue, 3)
+	fmt.Println("Result2:", result2)
 
-	fmt.Println("Add Result:", sum)
-
-	// -----------------------------
-	// First-class function
-	// -----------------------------
-
-	// Function কে variable এ assign করা হচ্ছে
-	myFunc := Add
-
-	fmt.Println("First-class Function:", myFunc(10, 20))
-
-	// -----------------------------
-	// Higher-order function
-	// -----------------------------
-
-	// anonymous function pass করছি
-	// এটা callback function
-
-	result := ProcessOperation(
-		4,
-		6,
-		func(x int, y int) int {
-			return x + y
-		},
-	)
-
-	fmt.Println("Higher-order Result:", result)
-
-	// -----------------------------
-	// Function returning function
-	// -----------------------------
-
-	multiply := GetMultiplier()
-
-	fmt.Println("Multiply Result:", multiply(3, 4))
+	// 🟡 main() stack frame ends here
 }
+
+
+
+// ------------------ class: 25
+
+
+
+
+
+
