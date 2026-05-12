@@ -837,80 +837,113 @@
 // ------------------ class: 28
 
 
+// package main
+
+// import "fmt"
+
+// // --------------------
+// // Struct (Custom Type)
+// // --------------------
+// type User struct {
+// 	Name string
+// 	Age  int
+// }
+
+// // ------------------------------------
+// // Normal function (old style approach)
+// // ------------------------------------
+// func PrintUserDetails(u User) {
+// 	fmt.Println("Name:", u.Name)
+// 	fmt.Println("Age:", u.Age)
+// }
+
+// // ------------------------------------
+// // Receiver function (method approach)
+// // ------------------------------------
+// // This makes PrintDetails a METHOD of User
+// func (u User) PrintDetails() {
+// 	fmt.Println("Name:", u.Name)
+// 	fmt.Println("Age:", u.Age)
+// }
+
+// // ------------------------------------
+// // Another receiver example with parameter
+// // ------------------------------------
+// func (u User) AddValue(x int) {
+// 	fmt.Println("Name:", u.Name)
+// 	fmt.Println("Value received:", x)
+// }
+
+// // --------------------
+// // Main function
+// // --------------------
+// func main() {
+
+// 	// Creating struct instances
+// 	user1 := User{
+// 		Name: "Habib",
+// 		Age:  30,
+// 	}
+
+// 	user2 := User{
+// 		Name: "Roki",
+// 		Age:  16,
+// 	}
+
+// 	// ----------------------------
+// 	// 1. Normal function call
+// 	// ----------------------------
+// 	PrintUserDetails(user1)
+// 	PrintUserDetails(user2)
+
+// 	fmt.Println("------------")
+
+// 	// ----------------------------
+// 	// 2. Receiver method call
+// 	// ----------------------------
+// 	user1.PrintDetails()
+// 	user2.PrintDetails()
+
+// 	fmt.Println("------------")
+
+// 	// ----------------------------
+// 	// 3. Receiver with parameter
+// 	// ----------------------------
+// 	user1.AddValue(10)
+// }
+
+
+
+
+
+// ------------------ class: 29
+
+
 package main
 
 import "fmt"
 
-// --------------------
-// Struct (Custom Type)
-// --------------------
-type User struct {
-	Name string
-	Age  int
-}
-
-// ------------------------------------
-// Normal function (old style approach)
-// ------------------------------------
-func PrintUserDetails(u User) {
-	fmt.Println("Name:", u.Name)
-	fmt.Println("Age:", u.Age)
-}
-
-// ------------------------------------
-// Receiver function (method approach)
-// ------------------------------------
-// This makes PrintDetails a METHOD of User
-func (u User) PrintDetails() {
-	fmt.Println("Name:", u.Name)
-	fmt.Println("Age:", u.Age)
-}
-
-// ------------------------------------
-// Another receiver example with parameter
-// ------------------------------------
-func (u User) AddValue(x int) {
-	fmt.Println("Name:", u.Name)
-	fmt.Println("Value received:", x)
-}
-
-// --------------------
-// Main function
-// --------------------
 func main() {
 
-	// Creating struct instances
-	user1 := User{
-		Name: "Habib",
-		Age:  30,
-	}
+	// Array declaration
+	// 2 size integer array
+	var arr [2]int
 
-	user2 := User{
-		Name: "Roki",
-		Age:  16,
-	}
+	// By default all values are 0
+	fmt.Println("Default array:", arr)
 
-	// ----------------------------
-	// 1. Normal function call
-	// ----------------------------
-	PrintUserDetails(user1)
-	PrintUserDetails(user2)
+	// Assign values using index
+	arr[0] = 3
+	arr[1] = 6
 
-	fmt.Println("------------")
+	// Print full array
+	fmt.Println("Updated array:", arr)
 
-	// ----------------------------
-	// 2. Receiver method call
-	// ----------------------------
-	user1.PrintDetails()
-	user2.PrintDetails()
-
-	fmt.Println("------------")
-
-	// ----------------------------
-	// 3. Receiver with parameter
-	// ----------------------------
-	user1.AddValue(10)
+	// Print individual values
+	fmt.Println("First value:", arr[0])
+	fmt.Println("Second value:", arr[1])
 }
+
 
 
 
