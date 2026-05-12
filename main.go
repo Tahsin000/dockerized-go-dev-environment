@@ -918,36 +918,51 @@
 
 
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-func main() {
+// func main() {
 
-	// Array declaration
-	// 2 size integer array
-	var arr [2]int
+// 	// Array declaration
+// 	// 2 size integer array
+// 	var arr [2]int
 
-	// By default all values are 0
-	fmt.Println("Default array:", arr)
+// 	// By default all values are 0
+// 	fmt.Println("Default array:", arr)
 
-	// Assign values using index
-	arr[0] = 3
-	arr[1] = 6
+// 	// Assign values using index
+// 	arr[0] = 3
+// 	arr[1] = 6
 
-	// Print full array
-	fmt.Println("Updated array:", arr)
+// 	// Print full array
+// 	fmt.Println("Updated array:", arr)
 
-	// Print individual values
-	fmt.Println("First value:", arr[0])
-	fmt.Println("Second value:", arr[1])
-}
+// 	// Print individual values
+// 	fmt.Println("First value:", arr[0])
+// 	fmt.Println("Second value:", arr[1])
+// }
 
 
 
 // ------------------ class: 30
 
 
+
+package main
+
+import "fmt"
+
+func main() {
+	x := 16
+
+	// x এর address store করছি p এর ভিতরে
+	p := &x
+
+	fmt.Println("x value:", x)
+	fmt.Println("x address:", p)
+	fmt.Println("value at address:", *p)
+}
 
 
 
