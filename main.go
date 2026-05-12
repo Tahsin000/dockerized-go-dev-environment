@@ -743,40 +743,98 @@
 // ------------------ class: 26
 
 
+// package main
+
+// import "fmt"
+
+// // function that returns a function (closure)
+// func outer(money int, p int) func() int {
+
+// 	// this variable will be captured by closure
+// 	age := 30
+
+// 	// returning an inner function
+// 	return func() int {
+// 		sum := money + age + p
+// 		return sum
+// 	}
+// }
+
+// func main() {
+
+// 	// calling outer returns a function
+// 	incrementOne := outer(100, 10)
+
+// 	// calling the returned function (closure)
+// 	fmt.Println(incrementOne()) // 140
+
+// 	// calling again (same closure, same captured memory)
+// 	fmt.Println(incrementOne()) // 140
+
+// 	// another closure instance
+// 	incrementTwo := outer(200, 20)
+// 	fmt.Println(incrementTwo()) // 250
+// }
+
+
+
+// ------------------ class: 27
+
+
 package main
 
 import "fmt"
 
-// function that returns a function (closure)
-func outer(money int, p int) func() int {
+// 1. Define a struct (custom type)
+type User struct {
+	Name string
+	Age  int
+}
 
-	// this variable will be captured by closure
-	age := 30
+// 2. Receiver function (method) - value receiver
+func (u User) PrintInfo() {
+	fmt.Println("Name:", u.Name)
+	fmt.Println("Age:", u.Age)
+}
 
-	// returning an inner function
-	return func() int {
-		sum := money + age + p
-		return sum
-	}
+// 3. Another receiver function
+func (u User) IsAdult() bool {
+	return u.Age >= 18
 }
 
 func main() {
 
-	// calling outer returns a function
-	incrementOne := outer(100, 10)
+	// 4. Create first instance (object)
+	user1 := User{
+		Name: "Habib",
+		Age:  30,
+	}
 
-	// calling the returned function (closure)
-	fmt.Println(incrementOne()) // 140
+	// 5. Create second instance
+	user2 := User{
+		Name: "Rocky",
+		Age:  16,
+	}
 
-	// calling again (same closure, same captured memory)
-	fmt.Println(incrementOne()) // 140
+	// 6. Access struct fields using dot (.)
+	fmt.Println("User 1 Name:", user1.Name)
+	fmt.Println("User 1 Age:", user1.Age)
 
-	// another closure instance
-	incrementTwo := outer(200, 20)
-	fmt.Println(incrementTwo()) // 250
+	fmt.Println("User 2 Name:", user2.Name)
+	fmt.Println("User 2 Age:", user2.Age)
+
+	// 7. Call receiver methods
+	fmt.Println("\n--- User 1 Info ---")
+	user1.PrintInfo()
+	fmt.Println("Is Adult?", user1.IsAdult())
+
+	fmt.Println("\n--- User 2 Info ---")
+	user2.PrintInfo()
+	fmt.Println("Is Adult?", user2.IsAdult())
 }
 
 
 
 
+// ------------------ class: 28
 
