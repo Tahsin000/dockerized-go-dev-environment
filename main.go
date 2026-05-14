@@ -969,31 +969,99 @@
 
 // ------------------ class: 31
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	arr := [6]string{"This", "is", "a", "Go", "interview", "question"}
+
+// 	// array থেকে slice: index 1 থেকে 4 এর আগ পর্যন্ত
+// 	s := arr[1:4] // ["is", "a", "Go"]
+
+// 	fmt.Println("s:", s)
+// 	fmt.Println("len(s):", len(s))
+// 	fmt.Println("cap(s):", cap(s))
+
+// 	// slice থেকে আরেকটা slice
+// 	s1 := s[1:2] // ["a"]
+
+// 	fmt.Println("s1:", s1)
+// 	fmt.Println("len(s1):", len(s1))
+// 	fmt.Println("cap(s1):", cap(s1))
+
+// 	// append করলে underlying array বদলাতে পারে
+// 	s = append(s, "changed")
+
+// 	fmt.Println("after append s:", s)
+// 	fmt.Println("array:", arr)
+// }
+
+
+
+
+// ------------------ class: 32
+
+
 package main
 
 import "fmt"
 
-func main() {
-	arr := [6]string{"This", "is", "a", "Go", "interview", "question"}
+// Simple instruction types
+const (
+	LOAD = iota // Load value from RAM into register
+	ADD        // Add RAM value to register
+	STORE      // Store register value into RAM
+	HALT       // Stop program
+)
 
-	// array থেকে slice: index 1 থেকে 4 এর আগ পর্যন্ত
-	s := arr[1:4] // ["is", "a", "Go"]
-
-	fmt.Println("s:", s)
-	fmt.Println("len(s):", len(s))
-	fmt.Println("cap(s):", cap(s))
-
-	// slice থেকে আরেকটা slice
-	s1 := s[1:2] // ["a"]
-
-	fmt.Println("s1:", s1)
-	fmt.Println("len(s1):", len(s1))
-	fmt.Println("cap(s1):", cap(s1))
-
-	// append করলে underlying array বদলাতে পারে
-	s = append(s, "changed")
-
-	fmt.Println("after append s:", s)
-	fmt.Println("array:", arr)
+type Instruction struct {
+	Op      int
+	Address int
 }
+
+func main() {
+	// RAM: each index is like a memory cell
+	ram := []int{
+		10, // cell 0
+		20, // cell 1
+		0,  // cell 2: result will be stored here
+	}
+
+	// Program stored as instructions
+	program := []Instruction{
+		{Op: LOAD, Address: 0},  // register = RAM[0]
+		{Op: ADD, Address: 1},   // register = register + RAM[1]
+		{Op: STORE, Address: 2}, // RAM[2] = register
+		{Op: HALT},
+	}
+
+	register := 0
+	programCounter := 0 // points to the current instruction
+
+	for {
+		instruction := program[programCounter]
+
+		switch instruction.Op {
+		case LOAD:
+			register = ram[instruction.Address]
+
+		case ADD:
+			register += ram[instruction.Address]
+
+		case STORE:
+			ram[instruction.Address] = register
+
+		case HALT:
+			fmt.Println("Program finished")
+			fmt.Println("Result stored in RAM cell 2:", ram[2])
+			return
+		}
+
+		programCounter++ // move to the next instruction
+	}
+}
+
+
+
 
