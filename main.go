@@ -949,20 +949,51 @@
 
 
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	x := 16
+
+// 	// x এর address store করছি p এর ভিতরে
+// 	p := &x
+
+// 	fmt.Println("x value:", x)
+// 	fmt.Println("x address:", p)
+// 	fmt.Println("value at address:", *p)
+// }
+
+
+
+
+// ------------------ class: 31
+
 package main
 
 import "fmt"
 
 func main() {
-	x := 16
+	arr := [6]string{"This", "is", "a", "Go", "interview", "question"}
 
-	// x এর address store করছি p এর ভিতরে
-	p := &x
+	// array থেকে slice: index 1 থেকে 4 এর আগ পর্যন্ত
+	s := arr[1:4] // ["is", "a", "Go"]
 
-	fmt.Println("x value:", x)
-	fmt.Println("x address:", p)
-	fmt.Println("value at address:", *p)
+	fmt.Println("s:", s)
+	fmt.Println("len(s):", len(s))
+	fmt.Println("cap(s):", cap(s))
+
+	// slice থেকে আরেকটা slice
+	s1 := s[1:2] // ["a"]
+
+	fmt.Println("s1:", s1)
+	fmt.Println("len(s1):", len(s1))
+	fmt.Println("cap(s1):", cap(s1))
+
+	// append করলে underlying array বদলাতে পারে
+	s = append(s, "changed")
+
+	fmt.Println("after append s:", s)
+	fmt.Println("array:", arr)
 }
-
-
 
